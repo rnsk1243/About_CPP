@@ -1,0 +1,4 @@
+﻿  mainProc.cpp
+d:\effective c 정리 문서\refference\refference\mainproc.cpp(19): warning C4172: 지역 변수 또는 임시: a의 주소를 반환하고 있습니다.
+  Refference.vcxproj -> D:\Effective C 정리 문서\Refference\Debug\Refference.exe
+  Refference.vcxproj -> D:\Effective C 정리 문서\Refference\Debug\Refference.pdb (Full PDB)

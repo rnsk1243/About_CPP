@@ -1,0 +1,96 @@
+http://siminq.tistory.com/entry/%EC%B0%B8%EC%A1%B0%EC%9E%90%EB%A5%BC-%EB%A6%AC%ED%84%B4%ED%95%98%EB%8A%94-%ED%95%A8%EC%88%98-%EC%9D%B4%ED%95%B4-%EC%89%BD%EA%B2%8C-%ED%95%98%EA%B8%B0
+먼저 설명에 들어가기 앞서서,  이 사실을 기억하자. 
+1 ) 
+int a = 30;      ->  rvalue인 30을 복사 떠서 a에 저장.   (30이 a로 이동하는게 아니다. 복사를 하는것이다! 
+
+
+
+이런 함수가 있다고 가정해보자.
+
+
+
+int& FuncOne(int &a)
+{
+   a++;
+   return a;
+}
+
+또 이런 함수가 있다고 가정하자.
+
+int FuncTwo(int &a)
+{
+   a++;
+   return a;
+}
+
+
+위 FuncOne 함수와FuncTwo 함수의 차이는,
+참조자를 반환하느냐, 변수를 반환하느냐의 차이이다. 
+
+이제 또 다음 사실을 기억하자. 
+2) 
+참조자를 반환하게 되면 -> return 뒤의 실제 객체 그 자체를 반환한다.   ==> lvalue 속성을 지님
+(하지만 리턴 하려는것이 지역변수이면, 소멸시점에 주의!!)
+변수를 반환하게 되면 -> return뒤의 객체를 복사된 것을 반환한다. ==>  rvalue 로 반환됨.   
+
+
+이제, 다음의 예제를 보자.
+
+1-A>
+int num1;
+int num2 = FuncOne(num1);
+1-B>
+int num1;
+int &num2 = FuncOne(num1);
+
+1-A와 1-B의 차이를 알겠는가?
+1-A에서는 , 
+위에 설명했던  1)  항목에 근거하여, 값의 복사가 이뤄진다.  num1과 num2는 별개의 변수가 된다!
+1-B에서는,
+num1과 num2가 동일한 변수이다.
+
+
+다음의 예제를 보자.
+
+2-A>
+int num1;
+int num2 = FuncTwo(num1);
+2-B>
+int num1;
+int &num2 = FuncTwo(num1);
+
+둘의 차이를 알겠는가?
+참고로 애초에 FuncTwo는 rvalue (리터럴 상수라고 이해하면 쉽다.)을 리턴한다. 
+2-A에서는, num2에선 FuncTwo가 반환한 임시변수의 값이 복사되어 num2에 저장된다.
+    즉, num1과 num2는 애초에 다른 변수이다!
+2-B에서는,
+참조자는 상수를 저장 할 수 없으므로, 애초에 컴파일 에러가 나는 구문이다!
+
+
+
+자 이제 정리를 해보자.
+
+
+1. 함수가 일반 변수를 리턴 (FuncTwo 같은 함수)   --> 값이 복사된 임시변수 리턴. 
+2. 함수가 참조자를 리턴 (FuncOne 같은 함수)  --> 함수내부의 return 키워드 
+뒤에나오는 객체 그 자체를 리턴. 
+
+#include<iostream>
+using namespace std;
+
+int& a(int a, int b) {
+	int temp = a + b;
+	//int* temp1 = new int();
+	//temp1 = &temp;
+	//cout << *temp1 << endl;
+	//cout << "temp = " << &temp << endl;
+	return temp;
+}
+
+void main()
+{
+	int& b = a(1, 2);
+	cout << "*&b = " << *(&b) << endl;
+	cout << "b = " << &b << endl;
+	cout << b << endl;
+}
