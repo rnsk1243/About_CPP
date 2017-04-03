@@ -49,16 +49,5 @@ void main()
 		cout << iterBegin->getI() << endl;
 	}
 	cout << "-------------" << endl;
-	CTargetManager M = manager;
-	TestIter iterBegin1 = M.listTest.getIterBegin();
-	TestIter iterEnd1 = M.listTest.getIterEnd();
-	for (; iterBegin1 != iterEnd1; ++iterBegin1)
-	{
-		cout << iterBegin1->getI() << endl;
-	}
-	iterBegin = manager.listTest.getIterBegin();
-	for (; iterBegin != iterEnd; ++iterBegin)
-	{
-		cout << iterBegin->getI() << endl;
-	}
+	
 }

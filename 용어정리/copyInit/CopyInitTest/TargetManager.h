@@ -6,7 +6,7 @@ using namespace std;
 class CTargetManager
 {
 public:
-	CListTest listTest;
+	CListTest& listTest;
 
 	CTargetManager(CListTest& listTest_):listTest(listTest_)
 	{

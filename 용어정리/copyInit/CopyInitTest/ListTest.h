@@ -8,14 +8,10 @@ typedef list<CTargetClass>::iterator TestIter;
 
 class CListTest
 {
-	list<CTargetClass> myList;
+	list<CTargetClass>* myList;
 public:
 
-	CListTest()
-	{
-		cout << "listTest 기본 생성자 호출" << endl;
-	}
-	CListTest(const CListTest& tt):myList(tt.myList)
+	CListTest():myList(new list<CTargetClass>())
 	{
 		cout << "listTest 복사 생성자 호출" << endl;
 	}
@@ -23,22 +19,23 @@ public:
 	~CListTest()
 	{
 		cout << "listTest 소멸자 호출" << endl;
+		delete myList;
 	}
 	void pushClass(CTargetClass& target)
 	{
-		myList.push_front(target);
+		myList->push_front(target);
 	}
 	void eraseClass(TestIter target)
 	{
-		myList.erase(target);
+		myList->erase(target);
 	}
 	TestIter getIterBegin()
 	{
-		return myList.begin();
+		return myList->begin();
 	}
 	TestIter getIterEnd()
 	{
-		return myList.end();
+		return myList->end();
 	}
 };
 

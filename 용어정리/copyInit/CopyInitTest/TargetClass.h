@@ -30,18 +30,19 @@ public:
 	CTargetClass(const CTargetClass& copyTarget):k(copyTarget.k)
 	{
 		cout << "CTargetClass 복사 생성자 호출" << endl;
-		i = new int();
-		*i = *copyTarget.i;
-		/*int length = sizeof(copyTarget.ch);
-		ch = new char[length];
-		strcat(ch, copyTarget.ch);*/
+		i = new int(*copyTarget.i);
+
 		int length = strlen(copyTarget.ch) + 1;
+		ch = new char[length];
+		strcpy(ch, copyTarget.ch);
+		//strcat 뒤에 붙이는것 
+		/*int length = strlen(copyTarget.ch) + 1;
 		ch = new char[length];
 		for (int i = 0; i < length-1; i++)
 		{
 			ch[i] = copyTarget.ch[i];
 		}
-		ch[length-1] = '\0';
+		ch[length-1] = '\0';*/
 	}
 
 	~CTargetClass()
