@@ -1,0 +1,4 @@
+﻿  main.cpp
+d:\effective c 정리 문서\readhandler\readhandler\readhandler.h(85): warning C4018: '>': signed 또는 unsigned가 일치하지 않습니다.
+  ReadHandler.vcxproj -> D:\Effective C 정리 문서\ReadHandler\Debug\ReadHandler.exe
+  ReadHandler.vcxproj -> D:\Effective C 정리 문서\ReadHandler\Debug\ReadHandler.pdb (Full PDB)
